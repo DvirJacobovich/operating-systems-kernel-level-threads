@@ -2,7 +2,6 @@
 #define MAPREDUCECLIENT_H
 
 #include <vector>  //std::vector
-#include <map>  //std::map
 #include <utility> //std::pair
 
 // input key and value.
@@ -44,19 +43,12 @@ public:
 	virtual ~V3() {}
 };
 
-struct K2PointerComp {
-    bool operator()(const K2* first, const K2* second) const
-    {
-        return (*first < *second);
-    }
-};
-
 typedef std::pair<K1*, V1*> InputPair;
 typedef std::pair<K2*, V2*> IntermediatePair;
 typedef std::pair<K3*, V3*> OutputPair;
 
 typedef std::vector<InputPair> InputVec;
-typedef std::map<K2*, std::vector<V2 *>, K2PointerComp> IntermediateMap;
+typedef std::vector<IntermediatePair> IntermediateVec;
 typedef std::vector<OutputPair> OutputVec;
 
 
@@ -64,13 +56,14 @@ class MapReduceClient {
 public:
 	// gets a single pair (K1, V1) and calls emit2(K2,V2, context) any
 	// number of times to output (K2, V2) pairs.
-	virtual void map(const K1* key, const V1* value, void* context) const = 0;
+	virtual void map(const K1* key, const V1* value, void* context)
+		const = 0;
 
 	// gets a single K2 key and a vector of all its respective V2 values
 	// calls emit3(K3, V3, context) any number of times (usually once)
 	// to output (K3, V3) pairs.
-    virtual void reduce(const K2* key, const std::vector<V2 *> &values, void*
-            context) const = 0;
+	virtual void reduce(const IntermediateVec* pairs, void* context)
+		const = 0;
 };
 
 

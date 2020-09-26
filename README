@@ -1,0 +1,12 @@
+mgoldgamer, dvir_jacobo
+maxim goldgamer 316813179, dvir jacobovich 204028898
+EX: 3
+
+FILES:
+
+MapReduceFramework.cpp: Is the implementaition of the MapReduceFramework.h class, Is used to run MapReduce on a
+given client
+Barrier.h: h Barrier class file.
+Barrier.cpp: Is the implementaition of the Barrier class.
+Makefile
+README - This file.
