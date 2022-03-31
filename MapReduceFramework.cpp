@@ -21,7 +21,7 @@ using namespace std;
 struct pthread_context{
     int id;
     size_t inpSize;
-    size_t* sortedSize; // we added pointer because this veriable is not constant. so if thread is setting this variable
+    size_t* sortedSize; // I added pointer because this veriable is not constant. so if thread is setting this variable
                         // we want it to be setted anywhere.
     int numOfThreads;
     const InputVec* inpVec;
